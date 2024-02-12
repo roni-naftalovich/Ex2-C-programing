@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include "my_mat.h"
-
 #define SIZE 5
-#define maximum_weight 20
 
 
 int max(int a, int b) {
@@ -67,7 +65,7 @@ for (i=0;i<SIZE;i++){
     printf("Selected items:")
     for(i=0;i<SIZE;i++){
         if(result[i] !=0){
-        printf(" %c" result[i])
+        printf(" %c" result[i]);
     }}
 }
 
