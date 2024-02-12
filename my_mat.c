@@ -5,7 +5,7 @@
 int copy[N][N];
 int i, j, k;
 
-int createMatrix(int matrix[10][10]){
+void createMatrix(int matrix[10][10]){
     
     
     for(i =0; i< 10; i++){
@@ -17,7 +17,7 @@ int createMatrix(int matrix[10][10]){
     }
 }
 
-int shortestPath(int i , int j){
+void shortestPath(int i , int j){
     for(k = 0; k < N; k++)
     {
         for(i = 0; i < N; i++)
@@ -46,4 +46,3 @@ void existPath(int i, int j){
        printf("False\n");
     
 }
-
