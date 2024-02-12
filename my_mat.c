@@ -3,8 +3,10 @@
 #include "my_mat.h"
 
 int copy[N][N];
+int i, j, k;
 
 int createMatrix(int matrix[10][10]){
+    
     
     for(i =0; i< 10; i++){
         for(j=0; j<10; j++){
@@ -34,7 +36,7 @@ int shortestPath(int i , int j){
         printf("-1\n");
     }
     else
-    printf("%d\n" copy[i][j]);
+    printf("%d\n" ,copy[i][j]);
 }
 
 void existPath(int i, int j){
@@ -44,3 +46,4 @@ void existPath(int i, int j){
        printf("False\n");
     
 }
+
