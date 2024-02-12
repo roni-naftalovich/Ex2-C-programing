@@ -2,7 +2,7 @@
 #include<stdbool.h>
 #include "my_mat.h"
 
-int copy[10][10];
+int copy[N][N];
 
 int createMatrix(int matrix[10][10]){
     
@@ -39,8 +39,8 @@ int shortestPath(int i , int j){
 
 void existPath(int i, int j){
     if(copy[i][j] !=0 && i!=j)
-       printf("True\n")
+       printf("True\n");
        else 
-       printf("False\n")
+       printf("False\n");
     
 }
