@@ -4,7 +4,7 @@
 
 int main(){
 
-    int matrix[10][10];
+    int matrix[N][N];
     int i;
     int j;
     char n;
@@ -37,4 +37,3 @@ while(n != 'D' && n != EOF){
     (" %c", &n);
 }
 }
-    
