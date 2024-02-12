@@ -46,14 +46,14 @@ char result[SIZE];
 int i;
 
 for(i=0;i<SIZE;i++){
-    scanf("%c" , items[i]);
-    scanf("%d" , weights[i]);
-    scanf("%d" , values[i]);
+    scanf("%c" , &items[i]);
+    scanf("%d" , &weights[i]);
+    scanf("%d" , &values[i]);
     selected[i]=0;
 }
 
 int maxValue = knapSack( weights, values, selected);
-printf("Maximum prifit: %d" maxValue);
+printf("Maximum profit: %d\n", maxValue);
 
 for (i=0;i<SIZE;i++){
     if(selected[i] !=0){
@@ -62,10 +62,10 @@ for (i=0;i<SIZE;i++){
     else{
         result[i]=0;
     }
-    printf("Selected items:")
+    printf("Selected items:");
     for(i=0;i<SIZE;i++){
         if(result[i] !=0){
-        printf(" %c" result[i]);
+        printf(" %c", result[i]);
     }}
 }
 
