@@ -1,30 +1,22 @@
-CC=gcc
-AR=ar
-OBJECTS_MAIN1=my_graph.o 
-OBJECTS_MAIN2=my_knapsack.o
-OBJECTS_LIB=my_math.o
-FLAGS= -Wall -g
+CC = gcc
+AR = ar
+OBJECTS_MAIN = my_graph.o
+OBJECTS_MAIN_KN = my_Knapsack.o
+OBJECTS_LIB_MY_MAT = my_mat.o
+FLAGS = -Wall -g
 
-all: my_graph my_knapsack
-
-my_math.a: $(OBJECTS_LIB) 
-	$(AR) rcs my_math.a $(OBJECTS_LIB)
-	ranlib my_math.a
-
-my_graph: $(OBJECTS_MAIN1) my_math.a
-	$(CC) $(FLAGS) -o my_graph $(OBJECTS_MAIN1) my_math.a
-
-my_math.o: $(OBJECTS_LIB)
-	$(CC) $(FLAGS) -fPIC -c my_math.c 
-
-my_graph.o: my_graph.c 
+all: mymat.a my_graph my_Knapsack
+mymat.a:$(OBJECTS_LIB_MY_MAT)
+	$(AR) -rcs mymat.a $(OBJECTS_LIB_MY_MAT)
+my_graph: $(OBJECTS_MAIN) mymat.a
+	$(CC) $(FLAGS) -o my_graph $(OBJECTS_MAIN) mymat.a
+my_Knapsack: $(OBJECTS_MAIN_KN) mymat.a
+	$(CC) $(FLAGS) -o my_Knapsack $(OBJECTS_MAIN_KN) mymat.a
+my_mat.o: my_mat.c my_mat.h
+	$(CC) $(FLAGS) -c my_mat.c
+my_graph.o: my_graph.c my_mat.h
 	$(CC) $(FLAGS) -c my_graph.c
-
-my_knapsack: $(OBJECTS_MAIN2) 
-	$(CC) $(FLAGS) -o my_knapsack $(OBJECTS_MAIN2)
-
-my_knapsack.o: my_knapsack.c 
-	$(CC) $(FLAGS) -c my_knapsack.c
-
+my_Knapsack.o: my_Knapsack.c my_mat.h
+	$(CC) $(FLAGS) -c my_Knapsack.c
 clean:
-	rm -f *.o *.a my_graph my_knapsack
+	rm -f *.o *.a my_graph my_Knapsack
