@@ -11,8 +11,8 @@ int copy[N][N];
 void createMatrix(int matrix[N][N]){
     int i, j;
     
-    for(i =0; i< 10; i++){
-        for(j=0; j<10; j++){
+    for(i =0; i< N; i++){
+        for(j=0; j<N; j++){
             scanf("%d", &matrix[i][j]);
             copy[i][j] = matrix[i][j];
 
@@ -20,7 +20,7 @@ void createMatrix(int matrix[N][N]){
     }
 }
 
-void shortestPath(int x, int y , int matrix[N][N]){
+int shortestPath(int x, int y , int matrix[N][N]){
     int i, j, k;
 
     for(k = 0; k < N; k++)
@@ -39,14 +39,17 @@ void shortestPath(int x, int y , int matrix[N][N]){
     }
     if (copy[x][y] == 0 ||x == y){
         printf("-1\n");
+        return -1;
     }
     else{
-    printf("%d\n" ,copy[i][j]);
+    printf("%d\n" ,copy[x][y]);
+    return 1;
     }
 }
 
 void existPath(int x, int y, int matrix[N][N]){
-    if(copy[x][y] !=0 && x!=y){
+    int shortest= shortestPath(x, y, matrix)
+    if(copy[x][y] !=0 && x!=y && shortest != -1){
        printf("True\n");
     }
        else {
