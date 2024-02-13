@@ -1,12 +1,15 @@
 #include<stdio.h>
-#include<stdbool.h>
+#include<stdlib.h>
 #include "my_mat.h"
 
-int copy[N][N];
-int i, j, k;
+#ifndef N
+#define N 10 
+#endif
 
-void createMatrix(int matrix[10][10]){
-    
+int copy[N][N];
+
+void createMatrix(int matrix[N][N]){
+    int i, j, k;
     
     for(i =0; i< 10; i++){
         for(j=0; j<10; j++){
@@ -17,7 +20,9 @@ void createMatrix(int matrix[10][10]){
     }
 }
 
-void shortestPath(int i , int j){
+void shortestPath(int i , int j , int matrix[N][N]){
+    int i, j;
+
     for(k = 0; k < N; k++)
     {
         for(i = 0; i < N; i++)
@@ -35,14 +40,17 @@ void shortestPath(int i , int j){
     if (copy[i][j] == 0 ||i == j){
         printf("-1\n");
     }
-    else
+    else{
     printf("%d\n" ,copy[i][j]);
+    }
 }
 
-void existPath(int i, int j){
-    if(copy[i][j] !=0 && i!=j)
+void existPath(int i, int j, int matrix[N][N]){
+    if(copy[i][j] !=0 && i!=j){
        printf("True\n");
-       else 
+    }
+       else {
        printf("False\n");
+       }
     
 }
