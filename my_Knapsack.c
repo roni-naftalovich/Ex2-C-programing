@@ -51,11 +51,11 @@ int selected[SIZE];
 int result[SIZE];
 int i;
 
-for(i=0;i<SIZE;i++){
-    scanf("%c" , &items[i]);
-    scanf("%d" , &weights[i]);
-    scanf("%d" , &values[i]);
-    selected[i]=0;
+for(i = 0; i < SIZE; i++) {
+    scanf(" %c", &items[i]);
+    scanf(" %d", &weights[i]);
+    scanf(" %d", &values[i]);
+    selected[i] = 0;
 }
 
 int maxValue = knapSack( weights, values, selected);
