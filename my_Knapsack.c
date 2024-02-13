@@ -2,20 +2,22 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "my_mat.h"
-#define S 5
+#define SIZE 5
 #define W 20
 
-int max(int n1, int n2){
-    if(n1 > n2)
-        return n1;
-    return n2;
- }
- 
- int KnapSack(int weight[], int value[], int selected_boll[]){
-    int i, j;
-    int K[S+1][W+1];
 
-    for (i = 0; i <= S; i++)
+int max(int a, int b)
+{
+    if (a > b)
+        return a;
+    return b;
+}
+ 
+ int KnapSack(int weight[], int value[], int selected_bool[]){
+    int i, j;
+    int K[SIZE+1][W+1];
+
+    for (i = 0; i <= SIZE; i++)
     {
         for (j = 0; j <= W; j++)
         {
@@ -29,7 +31,7 @@ int max(int n1, int n2){
         }
     }
 
-    i = S;
+    i = SIZE;
     j = W;
     while (j > 0 && i > 0)
     {
@@ -37,23 +39,23 @@ int max(int n1, int n2){
         {
             i--;
         }
-        selected_boll[i-1] = 1;
+        selected_bool[i-1] = 1;
         j -= weight[i-1];
         i--;
     }
-    return K[S][W];
+    return K[SIZE][W];
  }
     
 
 int main(){
-    int selected[S];
-    char items[S][21];
-    int value[S];
-    int weight[S];
+    int selected[SIZE];
+    char items[SIZE][21];
+    int value[SIZE];
+    int weight[SIZE];
     int i, j = 0;
-    char result[S][21];
+    char result[SIZE][21];
 
-    for (i = 0; i < S; i++)
+    for (i = 0; i < SIZE; i++)
     {
         scanf("%20s", items[i]);
         scanf("%d", &value[i]);
@@ -65,7 +67,7 @@ int main(){
     printf("Maximum profit: %d\n", maxValue);
     printf("Selected items:");
 
-    for (i = 0; i < S; i++)
+    for (i = 0; i < SIZE; i++)
     {
         if (selected[i] == 1)
         {
