@@ -1,4 +1,5 @@
-#include "stdio.h"
+#include <stdio.h>
+#include "my_mat.h"
 
 #define ARRAY_SIZE 5
 #define MAX_WEIGHT 20
@@ -84,34 +85,28 @@ int knapSack(int weights[], int values[], int selected_bool[])
 
     return maxprofit;
 }
-    
+int main()
+{
+    char items[ARRAY_SIZE];
+    int values[ARRAY_SIZE];
+    int weights[ARRAY_SIZE];
+    int selected_bool[ARRAY_SIZE];
+    int max_profit;
+    int i;
 
-int main(){
+    makeNewItems(values, weights, items); // gets new values and weights
+    max_profit = knapSack(weights, values, selected_bool);
 
-char items[ARRAY_SIZE];
-int weights[ARRAY_SIZE];
-int values[ARRAY_SIZE];
-int selected[ARRAY_SIZE];
-int result[ARRAY_SIZE];
-int i;
+    printf("Maximum profit: %d", max_profit);
+    printf("\n");
 
-    makeNewItems(values, weights,selected);
-
-int maxValue = knapSack( weights, values, selected);
-printf("Maximum profit: %d\n", maxValue);
-
-for (i=0;i<ARRAY_SIZE;i++){
-    if(selected[i] !=0){
-        result[i]=selected[i];
-    }
-    else{
-        result[i]=0;
-    }}
     printf("Selected items:");
-    for(i=0;i<ARRAY_SIZE;i++){
-        if(result[i] !=0){
-        printf(" %c", items[i]);
-    }}
-
-
+    for (i = 0; i < ARRAY_SIZE; i++)
+    {
+        if (selected_bool[i] == 1)
+        {
+            printf(" %c",items[i]);
+        }
+    }
+    
 }
