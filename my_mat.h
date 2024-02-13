@@ -1,7 +1,7 @@
 #ifndef MY_MAT_H
 #define MY_MAT_H
 #define N 10
-#define S 5
+#define SIZE 5
 #define W 20
 
 void existPath(int i, int j, int[N][N]);
