@@ -42,7 +42,7 @@ int shortestPath(int x, int y , int matrix[N][N]){
     }
     else{
     
-    return 1;
+    return copy[x][y];
     }
 }
 
