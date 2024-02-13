@@ -37,19 +37,18 @@ int shortestPath(int x, int y , int matrix[N][N]){
             }
         }
     }
-    if (copy[x][y] == 0 ||x == y){
-        printf("-1\n");
+    if(copy[x][y] == 0 ||x == y){
         return -1;
     }
     else{
-    printf("%d\n" ,copy[x][y]);
+    
     return 1;
     }
 }
 
 void existPath(int x, int y, int matrix[N][N]){
-    int shortest= shortestPath(x, y, matrix)
-    if(copy[x][y] !=0 && x!=y && shortest != -1){
+    int shortest= shortestPath(x, y, matrix);
+    if (copy[x][y] !=0 && x!=y && shortest != -1){
        printf("True\n");
     }
        else {
