@@ -32,7 +32,12 @@ while(n != 'D' && n != EOF){
     {
         scanf(" %d" , &i);
         scanf(" %d" , &j);
-        shortestPath(i , j, matrix);
+        int shortest=shortestPath(i , j, matrix);
+        if(shortest==-1){
+            printf("-1\n");
+        }else{
+           printf("%d\n" ,shortest); 
+        }
     }
     
     scanf(" %c", &n);
