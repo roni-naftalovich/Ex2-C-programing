@@ -1,67 +1,106 @@
-#include <stdio.h>
-#include "my_mat.h"
-#define SIZE 5
-#define MAX_CAPACITY 20
+#include "stdio.h"
 
+#define ARRAY_SIZE 5
+#define MAX_WEIGHT 20
 
-int max(int a, int b) {
-    return (a > b) ? a : b;
+int max(int a, int b)
+{
+    if (a > b)
+        return a;
+    return b;
 }
 
+int makeNewItems(int values[], int weights[], char items[])
+{
+    int i;
+    for (i = 0; i < ARRAY_SIZE; i++)
+    {
+        scanf("%c ", &items[i]);
+        scanf("%d ", &values[i]);
+        scanf("%d ", &weights[i]);
+    }
+    return 0;
+}
 
-int knapSack(int weights[], int values[], int selected_bool[]) {
+int knapSack(int weights[], int values[], int selected_bool[])
+{
+    int tempSIZE = ARRAY_SIZE + 1;
+    int tempWeight = MAX_WEIGHT + 1;
 
-    int i, w;
-    int K[SIZE + 1][MAX_CAPACITY + 1];
+    int profit[tempSIZE][tempWeight];
+    int i, k;
+    int maxprofit = 0;
 
-    for (i = 0; i <= SIZE; i++) {
-        for (w = 0; w <= MAX_CAPACITY; w++) {
-            if (i == 0 || w == 0)
-                K[i][w] = 0;
-            else if (weights[i - 1] <= w)
-                K[i][w] = max(values[i - 1] + K[i - 1][w - weights[i - 1]], K[i - 1][w]);
-            else
-                K[i][w] = K[i - 1][w];
+    for (i = 0; i < tempSIZE; i++)
+    {
+        for (k = 0; k < tempWeight; k++)
+        {
+            profit[i][k] = 0;
         }
     }
-    i = SIZE;
-    w = MAX_CAPACITY;
-    while (w > 0 && i > 0)
+
+    // dynamic table for profit
+    for (i = 0; i < tempSIZE; i++)
     {
-        while (i > 0 && K[i][w] == K[i-1][w])
+        for (k = 0; k < tempWeight; k++)
         {
-            i--;
+            if (k == 0 || i == 0)
+            {
+                profit[i][k] = 0;
+            }
+            else if (weights[i - 1] <= k)
+            {
+                profit[i][k] = max(values[i - 1] + profit[i - 1][k - weights[i - 1]], profit[i - 1][k]);
+            }
+            else
+            {
+                profit[i][k] = profit[i - 1][k];
+            }
         }
-        selected_bool[i-1] = 1;
-        w -= weights[i-1];
+    }
+
+    // back tracking
+    i = tempSIZE;
+    k = MAX_WEIGHT;
+
+    while (i > 0 && k > 0)
+    {
+        if (profit[i][k] != profit[i - 1][k])
+        {
+            selected_bool[i - 1] = 1;
+            k -= weights[i - 1];
+        }
+
         i--;
     }
+    for (i = 0; i < tempSIZE; i++)
+    {
+        for (k = 0; k < tempWeight; k++)
+        {
+            if (profit[i][k] > maxprofit)
+                maxprofit = profit[i][k];
+        }
+    }
 
-    // Return the maximum value
-    return K[SIZE][MAX_CAPACITY];
+    return maxprofit;
 }
     
 
 int main(){
 
-char items[SIZE];
-int weights[SIZE];
-int values[SIZE];
-int selected[SIZE];
-int result[SIZE];
+char items[ARRAY_SIZE];
+int weights[ARRAY_SIZE];
+int values[ARRAY_SIZE];
+int selected[ARRAY_SIZE];
+int result[ARRAY_SIZE];
 int i;
 
-for(i = 0; i < SIZE; i++) {
-    scanf(" %c", &items[i]);
-    scanf(" %d", &weights[i]);
-    scanf(" %d", &values[i]);
-    selected[i] = 0;
-}
+    makeNewItems(values, weights,selected);
 
 int maxValue = knapSack( weights, values, selected);
 printf("Maximum profit: %d\n", maxValue);
 
-for (i=0;i<SIZE;i++){
+for (i=0;i<ARRAY_SIZE;i++){
     if(selected[i] !=0){
         result[i]=selected[i];
     }
@@ -69,7 +108,7 @@ for (i=0;i<SIZE;i++){
         result[i]=0;
     }}
     printf("Selected items:");
-    for(i=0;i<SIZE;i++){
+    for(i=0;i<ARRAY_SIZE;i++){
         if(result[i] !=0){
         printf(" %c", items[i]);
     }}
