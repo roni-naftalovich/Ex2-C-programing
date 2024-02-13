@@ -12,11 +12,12 @@ int main(){
 
 while (n != 'A')
 {
-   scanf("%c", &n);
+   scanf(" %c", &n);
 
 }
 
 createMatrix(matrix);
+    
 while(n != 'D' && n != EOF){
     if(n == 'A'){
         createMatrix(matrix);
@@ -25,13 +26,13 @@ while(n != 'D' && n != EOF){
     {
         scanf(" %d" , &i);
         scanf(" %d" , &j);
-        existPath(i , j);
+        existPath(i , j, matrix);
     }
     if (n == 'C')
     {
         scanf(" %d" , &i);
         scanf(" %d" , &j);
-        shortestPath(i , j);
+        shortestPath(i , j, matrix);
     }
     
     (" %c", &n);
