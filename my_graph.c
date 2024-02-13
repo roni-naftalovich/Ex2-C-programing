@@ -35,6 +35,6 @@ while(n != 'D' && n != EOF){
         shortestPath(i , j, matrix);
     }
     
-    (" %c", &n);
+    scanf(" %c", &n);
 }
 }
