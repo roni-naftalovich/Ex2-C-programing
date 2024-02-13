@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "my_mat.h"
+#ifndef SIZE
 #define SIZE 5
+#endif
 
 
 int max(int a, int b) {
